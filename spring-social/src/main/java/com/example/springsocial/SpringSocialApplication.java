@@ -10,7 +10,7 @@ import com.example.springsocial.config.AppProperties;
 @EnableConfigurationProperties(AppProperties.class)
 public class SpringSocialApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringSocialApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringSocialApplication.class, args);
+    }
 }
