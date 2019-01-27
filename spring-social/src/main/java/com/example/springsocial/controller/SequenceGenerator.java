@@ -14,6 +14,7 @@ import java.util.Enumeration;
  * cluster.
  */
 public class SequenceGenerator {
+    
     private static final int TOTAL_BITS = 64;
     private static final int EPOCH_BITS = 42;
     private static final int MACHINE_ID_BITS = 10;
@@ -45,12 +46,10 @@ public class SequenceGenerator {
 
     public long nextId() {
         long currentTimestamp = timestamp();
-
         synchronized (this) {
             if (currentTimestamp < lastTimestamp) {
                 throw new IllegalStateException("Invalid System Clock!");
             }
-
             if (currentTimestamp == lastTimestamp) {
                 sequence = (sequence + 1) & maxSequence;
                 if (sequence == 0) {
@@ -61,7 +60,6 @@ public class SequenceGenerator {
                 // reset sequence for next millisecond
                 sequence = 0;
             }
-
             lastTimestamp = currentTimestamp;
         }
 
@@ -105,4 +103,5 @@ public class SequenceGenerator {
         machineId = machineId & maxMachineId;
         return machineId;
     }
+
 }
